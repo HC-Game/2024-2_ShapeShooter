@@ -34,8 +34,5 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //enemyspawn
-    [SerializeField]
-    public int[] AllEnemyShapes = { 0, 1, 2 }; // 1 : 삼각형,2 :사각형, 3 :오각형
 
 }

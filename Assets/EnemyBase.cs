@@ -5,7 +5,10 @@ using UnityEngine;
 public class EnemyBase : MonoBehaviour
 {
     protected Rigidbody enemyRb;
-   
+    //enemyspawn
+    [SerializeField]
+    public enum EnemyShapes { Triangle, Square, Pentagon, Heavy, Mini}; //  삼각형, 사각형, 오각형
+    public EnemyShapes enemyShapes;
     //해당 몬스터의 도형
     [SerializeField]
     int CurrentEnemyShape;
@@ -45,13 +48,30 @@ public class EnemyBase : MonoBehaviour
     public void init()
     {
         enemyRb = GetComponent<Rigidbody>();
-        CurrentEnemyShape = RandomShape();
-    }
 
-    int RandomShape()
-    {
-        return GameManager.Instance.AllEnemyShapes[Random.Range(0, 2)];
+        switch (enemyShapes)    //프리펩 설정 넣어야함!!
+        {
+            case EnemyShapes.Triangle: //삼각형
+                CurrentEnemyShape = 0;
+
+          
+                break;
+            case EnemyShapes.Square://사각형
+                CurrentEnemyShape = 1;
+
+                break;
+
+            case EnemyShapes.Pentagon: //오각형
+                CurrentEnemyShape = 2;
+
+                break;
+            case EnemyShapes.Heavy:
+                break;
+            case EnemyShapes.Mini:
+                break;
+        }
     }
+   
 
     void Death()
     {
