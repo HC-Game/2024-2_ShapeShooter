@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
         }
     }
  
-    public Rigidbody player;
+    public Transform player;
     public Transform playerCam;
 
     // Awake is called before Start

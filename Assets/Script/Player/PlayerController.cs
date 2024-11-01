@@ -41,9 +41,13 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         CameraSet();
+    }
+    void FixedUpdate()
+    {
+   
         Moving();
     }
 
@@ -62,14 +66,14 @@ public class PlayerController : MonoBehaviour
         // 회전 처리 (캐릭터 좌우 회전)
         if (rotate.x != 0)
         {
-            Quaternion deltaRotation = Quaternion.Euler(0, rotate.x * rotateSpeed * Time.fixedDeltaTime, 0);
+            Quaternion deltaRotation = Quaternion.Euler(0, rotate.x * rotateSpeed * Time.deltaTime, 0);
             rb.MoveRotation(rb.rotation * deltaRotation);
         }
 
         // 카메라 회전 처리 (위/아래 회전)
         if (rotate.y != 0)
         {
-            cameraPitch -= rotate.y * rotateSpeed * Time.fixedDeltaTime; // 마우스 y값을 반대로 적용
+            cameraPitch -= rotate.y * rotateSpeed * Time.deltaTime; // 마우스 y값을 반대로 적용
             cameraPitch = Mathf.Clamp(cameraPitch, -maxCameraAngle, maxCameraAngle); // 회전 각도 제한
             cameraTransform.localRotation = Quaternion.Euler(cameraPitch, 0, 0);
         }
@@ -97,7 +101,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("shoot");
             if (hit.transform.CompareTag("Enemy"))
             {
-                hit.transform.GetComponent<Enemy>().EnemyHealth -= 1;
+                hit.transform.GetComponent<EnemyBase>().Hit(curruntAmmo);
             }
         }
     }

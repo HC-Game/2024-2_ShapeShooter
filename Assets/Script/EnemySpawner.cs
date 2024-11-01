@@ -7,7 +7,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     List<Transform> spawnPoints = new List<Transform>();
-    public GameObject enemy;
+    public GameObject[] enemy;
     public Transform enemyParent;
     
     void Start()
@@ -16,14 +16,16 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(Spawn());
     }
 
+    
     IEnumerator Spawn()
     {
         while (true)
         {
-            int rand = UnityEngine.Random.Range(1, spawnPoints.Count);
-            GameObject monster = Instantiate(enemy, enemyParent);
-            monster.transform.position = spawnPoints[rand].position;
+            int rand = UnityEngine.Random.Range(0, 2);
+            ObjectPooler.SpawnFromPool($"{rand}", spawnPoints[UnityEngine.Random.Range(1, spawnPoints.Count)].position);
             yield return new WaitForSeconds(2f);
         }
     }
+
+    
 }
