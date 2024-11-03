@@ -1026,7 +1026,6 @@ MonoBehaviour:
   playerCam: {fileID: 1384023765}
   TimeText: {fileID: 1653980874}
   timeLimit: 600
-  currentTime: 0
   minute: 0
   second: 0
 --- !u!4 &1250481591
@@ -2074,8 +2073,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5281641790074055222, guid: f92ba10b9f9133a4f8451669a0c4abd6, type: 3}
+      propertyPath: m_Drag
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5281641790074055222, guid: f92ba10b9f9133a4f8451669a0c4abd6, type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5281641790074055222, guid: f92ba10b9f9133a4f8451669a0c4abd6, type: 3}
+      propertyPath: m_AngularDrag
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5281641790074055222, guid: f92ba10b9f9133a4f8451669a0c4abd6, type: 3}
       propertyPath: m_IsKinematic
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5281641790074055222, guid: f92ba10b9f9133a4f8451669a0c4abd6, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6477371962467044115, guid: f92ba10b9f9133a4f8451669a0c4abd6, type: 3}
       propertyPath: m_Name

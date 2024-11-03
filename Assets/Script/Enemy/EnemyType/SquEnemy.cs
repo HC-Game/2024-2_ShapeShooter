@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class SquEnemy : EnemyBase
 {
+   
     public override void init()
     {
     
-        enemyData.enemyShapes = EnemyShapes.Square;
+      
         enemyData.enemyHealth = 1;
         enemyData.CurrentEnemyShape = 1;
         enemyData.enemydamage = 1;

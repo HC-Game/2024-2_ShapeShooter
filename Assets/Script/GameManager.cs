@@ -24,29 +24,25 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI TimeText;
     public int timeLimit = 600;
-    public int currentTime = 0;
+ 
     public int minute,second;
     WaitForSeconds wait_1f = new WaitForSeconds(1f);
 
     IEnumerator StartGameTimer()
     {
-        minute= currentTime/60;
-        second= currentTime%60;
+        while (timeLimit>0) { 
+        minute= timeLimit / 60;
+        second= timeLimit % 60;
 
         TimeText.text = $"{minute} : {second}";
 
         yield return wait_1f;
         timeLimit -= 1; // 1√  ∞®º“
-        CheckTimeOver();
+        continue;
+        }
+        TimeOver();
     }
 
-    private void CheckTimeOver()
-    {
-        if (timeLimit <= 0) {
-            TimeOver();
-        }
-   
-    }
 
     private void TimeOver()
     {
@@ -73,7 +69,8 @@ public class GameManager : MonoBehaviour
     }
     public void GameStart()
     {
-        StartGameTimer();
+      
+        StartCoroutine(StartGameTimer());
     }
 
 }

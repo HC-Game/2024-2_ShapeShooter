@@ -7,7 +7,7 @@ public class TriEnemy : EnemyBase
     public override void init()
     {
      
-        enemyData.enemyShapes = EnemyShapes.Triangle;
+   
         enemyData.enemyHealth = 1;
         enemyData.CurrentEnemyShape = 0;
         enemyData.enemydamage = 1;

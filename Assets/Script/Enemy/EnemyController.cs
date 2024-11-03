@@ -18,7 +18,6 @@ public class EnemyController : MonoBehaviour
         a.transform.position = new Vector3(transform.position.x,2,transform.position.z);
         enemyBase.MoveToPlayer();
     }
-
-
+  
 
 }
