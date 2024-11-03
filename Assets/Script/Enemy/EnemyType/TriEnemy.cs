@@ -11,7 +11,7 @@ public class TriEnemy : EnemyBase
         enemyData.enemyHealth = 1;
         enemyData.CurrentEnemyShape = 0;
         enemyData.enemydamage = 1;
-        enemyData.enemySpeed = 1f;
+        enemyData.enemySpeed = 4f;
     }
 
     public override void MoveToPlayer()
