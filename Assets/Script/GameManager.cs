@@ -11,10 +11,7 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if (instance == null)
-            {
-                Debug.LogError("GameManager instance is null! Make sure GameManager is in the scene.");
-            }
+      
             return instance;
         }
     }
@@ -49,7 +46,6 @@ public class GameManager : MonoBehaviour
         
     }
 
-    // Awake is called before Start
     void Awake()
     {
         if (instance == null)
@@ -59,7 +55,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject); // 이미 인스턴스가 존재하면 중복된 오브젝트를 삭제
+            Destroy(gameObject); 
         }
     }
 

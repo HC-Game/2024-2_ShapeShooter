@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using UnityEngine.XR;
 
 public class PlayerController : MonoBehaviour
@@ -14,7 +15,7 @@ public class PlayerController : MonoBehaviour
     Vector3 move = Vector3.zero;
     Vector2 rotate;
     Transform cameraTransform;
-
+    float originSpeed;
     //Move Property
     public float speed = 5f;
     public float rotateSpeed = 10f;
@@ -26,10 +27,13 @@ public class PlayerController : MonoBehaviour
     //Ammo
     PlayerUI PlayerUI;
     int curruntAmmo = 0;
+
     //Shoot Property
     bool CanShoot = true;
-    WaitForSeconds ShootDelay = new WaitForSeconds(1f);
+    WaitForSeconds ShootDelay = new WaitForSeconds(0.05f);
     public float fireRange = 10f; // 사거리
+    public GameObject ShootDelayBarObject;
+    public Slider ShootDelayBar;
 
     void Start()
     {
@@ -39,6 +43,8 @@ public class PlayerController : MonoBehaviour
         cameraTransform = GameManager.Instance.playerCam.transform;
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
+        ShootDelayBarObject.SetActive(false);
+        originSpeed = speed;
     }
 
     void Update()
@@ -95,10 +101,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnFire(InputValue value)
     {
-        if (CanShoot&&Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, fireRange))
+        if (!CanShoot) {return; }
+        StartCoroutine(CheckCanShoot());
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, fireRange))
         {
-            StartCoroutine(CheckCanShoot());
-            Debug.Log("shoot");
             if (hit.transform.CompareTag("Enemy"))
             {
                 hit.transform.GetComponent<EnemyBase>().Hit(curruntAmmo);
@@ -125,13 +131,39 @@ public class PlayerController : MonoBehaviour
             PlayerUI.Choose(curruntAmmo);
         }
     }
+    private void OnSprint()
+    {
+        if (Keyboard.current.shiftKey.wasPressedThisFrame)
+        {
+            speed = originSpeed * 2f;
+        }
+        if (Keyboard.current.shiftKey.wasReleasedThisFrame)
+        {
+            speed = originSpeed;
+          
+        }
+
+        //if (move != Vector3.zero && Keyboard.current.shiftKey.wasPressedThisFrame)
+        //{
+        //    // 이동 처리: 회전된 방향을 기준으로 이동 벡터를 계산
+        //    Vector3 moveDirection = rb.rotation * move.normalized;
+        //    rb.AddForce(moveDirection*3f,ForceMode.Impulse);
+        //}
+    }
     #endregion
     IEnumerator CheckCanShoot()
     {
+        ShootDelayBarObject.SetActive(true);
+        ShootDelayBar.value = 0;
         CanShoot = false;
-        Debug.Log("cantShoot");
-        yield return ShootDelay;
+
+        for (float i = 1; i <= 16; i++)
+        {
+            ShootDelayBar.value = i/16;
+            yield return ShootDelay;
+        }
+        ShootDelayBarObject.SetActive(false);
         CanShoot = true;
-        Debug.Log("canShoot");
+       
     }
 }

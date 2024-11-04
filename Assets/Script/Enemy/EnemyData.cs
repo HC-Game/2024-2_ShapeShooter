@@ -1,4 +1,8 @@
-﻿public struct EnemyData
+﻿
+using System;
+
+[Serializable]
+public class EnemyData
 {
 
     public int enemyHealth;

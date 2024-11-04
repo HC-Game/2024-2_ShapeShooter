@@ -8,7 +8,9 @@ public abstract class EnemyBase : MonoBehaviour
 {  
     public EnemyData enemyData;
     public Rigidbody rb;
-    public abstract void init();
+    public virtual void init() {
+        enemyData.enemySpeed = 2.4f;
+    }
     public virtual void MoveToPlayer()
     {
         Vector3 dir = GameManager.Instance.player.position - rb.position;
@@ -20,18 +22,12 @@ public abstract class EnemyBase : MonoBehaviour
         Debug.Log("hit");
         if (weapon == enemyData.CurrentEnemyShape)
         {
-            enemyData.enemyHealth -= 1;
-            Debug.Log(enemyData.enemyHealth);
+            Death();
+            Debug.Log("death");
         }
 
-        if(enemyData.enemyHealth <= 0)
-        {
-            Death();
-            Debug.Log(123);
-        }
     }
 
- 
     public void Death()
     {
         

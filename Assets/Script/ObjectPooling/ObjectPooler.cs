@@ -3,23 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-#if UNITY_EDITOR
-using UnityEditor;
 
-[CustomEditor(typeof(ObjectPooler))]
-public class ObjectPoolerEditor : Editor
-{
-	const string INFO = "풀링한 오브젝트에 다음을 적으세요 \nvoid OnDisable()\n{\n" +
-		"    ObjectPooler.ReturnToPool(gameObject);    // 한 객체에 한번만 \n" +
-		"    CancelInvoke();    // Monobehaviour에 Invoke가 있다면 \n}";
-
-	public override void OnInspectorGUI()
-	{
-		EditorGUILayout.HelpBox(INFO, MessageType.Info);
-		base.OnInspectorGUI();
-	}
-}
-#endif
 
 public class ObjectPooler : MonoBehaviour
 {
@@ -37,9 +21,6 @@ public class ObjectPooler : MonoBehaviour
     [SerializeField] Pool[] pools;
     List<GameObject> spawnObjects;
     Dictionary<string, Queue<GameObject>> poolDictionary;
-    readonly string INFO = " 오브젝트에 다음을 적으세요 \nvoid OnDisable()\n{\n" +
-        "    ObjectPooler.ReturnToPool(gameObject);    // 한 객체에 한번만 \n" +
-        "    CancelInvoke();    // Monobehaviour에 Invoke가 있다면 \n}";
 
 
 
@@ -156,7 +137,7 @@ public class ObjectPooler : MonoBehaviour
     {
         var obj = Instantiate(prefab, transform);
         obj.name = tag;
-        obj.SetActive(false); // 비활성화시 ReturnToPool을 하므로 Enqueue가 됨
+        obj.SetActive(false); // 비활성화시 ReturnToPool Enqueue
         return obj;
     }
 
