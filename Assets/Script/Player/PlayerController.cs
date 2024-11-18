@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     public float fireRange = 10f; // »ç°Å¸®
     public GameObject ShootDelayBarObject;
     public Slider ShootDelayBar;
-
+    public ParticleSystem shotParticle;
     void Start()
     {
         PlayerUI = GetComponent<PlayerUI>();
@@ -103,6 +103,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!CanShoot) {return; }
         StartCoroutine(CheckCanShoot());
+        shotParticle.Play();
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, fireRange))
         {
             if (hit.transform.CompareTag("Enemy"))
