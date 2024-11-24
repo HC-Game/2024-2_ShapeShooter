@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3146907832897968721}
   - component: {fileID: 4693866042098123643}
   - component: {fileID: 387352154652647892}
-  - component: {fileID: 2540753188880433752}
   - component: {fileID: 5870833232276777794}
+  - component: {fileID: 2540753188880433752}
   - component: {fileID: 8508351855267060342}
   m_Layer: 0
   m_Name: Player
@@ -88,22 +88,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &2540753188880433752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5596172803144013394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac6413f1cccd36944b16950501c8ae42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Ammos:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &5870833232276777794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +108,22 @@ MonoBehaviour:
   ShootDelayBarObject: {fileID: 0}
   ShootDelayBar: {fileID: 0}
   shotParticle: {fileID: 8468947528461030510}
+--- !u!114 &2540753188880433752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5596172803144013394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac6413f1cccd36944b16950501c8ae42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ammos:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &8508351855267060342
 MonoBehaviour:
   m_ObjectHideFlags: 0

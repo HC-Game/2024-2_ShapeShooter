@@ -9,7 +9,7 @@ public class MainMenuController : MonoBehaviour
     public void StartButton_Clik()
     {
         SceneManager.LoadScene(1);
-        GameManager.Instance.GameStart();
+       
     }
 
 

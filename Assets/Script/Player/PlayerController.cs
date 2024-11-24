@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     bool CanShoot = true;
     WaitForSeconds ShootDelay = new WaitForSeconds(0.05f);
     public float fireRange = 10f; // »ç°Å¸®
-    public GameObject ShootDelayBarObject;
+    public GameObject ShootDelayBarUI;
     public Slider ShootDelayBar;
     public ParticleSystem shotParticle;
     void Start()
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
         cameraTransform = GameManager.Instance.playerCam.transform;
         rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
-        ShootDelayBarObject.SetActive(false);
+        ShootDelayBarUI.SetActive(false);
         originSpeed = speed;
     }
 
@@ -154,17 +154,18 @@ public class PlayerController : MonoBehaviour
     #endregion
     IEnumerator CheckCanShoot()
     {
-        ShootDelayBarObject.SetActive(true);
+        ShootDelayBarUI.SetActive(true);
         ShootDelayBar.value = 0;
         CanShoot = false;
 
         for (float i = 1; i <= 16; i++)
         {
-            ShootDelayBar.value = i/16;
+            ShootDelayBar.value = i / 16;
             yield return ShootDelay;
         }
-        ShootDelayBarObject.SetActive(false);
+        ShootDelayBarUI.SetActive(false);
         CanShoot = true;
-       
+
     }
+    
 }

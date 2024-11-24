@@ -2532,6 +2532,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 865522463}
     - target: {fileID: 5870833232276777794, guid: 1c80da29208d0714793e1ce8bf941f55, type: 3}
+      propertyPath: ShootDelayBarUI
+      value: 
+      objectReference: {fileID: 168876774}
+    - target: {fileID: 5870833232276777794, guid: 1c80da29208d0714793e1ce8bf941f55, type: 3}
       propertyPath: ShootDelayBarObject
       value: 
       objectReference: {fileID: 168876774}
