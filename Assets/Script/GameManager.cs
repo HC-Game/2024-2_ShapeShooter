@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
         }
     }
  
+    [Header("GamePlay Properties")]
     public Transform player;
     public Transform playerCam;
 

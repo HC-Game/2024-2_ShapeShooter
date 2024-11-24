@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5938954675551692773, guid: bbd86d014a257e54aa4ed9ecc1e8be75, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5938954675551692773, guid: bbd86d014a257e54aa4ed9ecc1e8be75, type: 3}
+      propertyPath: m_Center.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6040417088163518862, guid: bbd86d014a257e54aa4ed9ecc1e8be75, type: 3}
       propertyPath: m_Name
       value: HeavyEnemy

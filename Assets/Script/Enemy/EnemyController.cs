@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour
     private void FixedUpdate()
     {
         a.text =  $"{enemyBase.enemyData.CurrentEnemyShape}";
-        a.transform.position = new Vector3(transform.position.x,2,transform.position.z);
+        
         enemyBase.MoveToPlayer();
     }
   
