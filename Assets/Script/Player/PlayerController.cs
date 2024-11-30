@@ -16,13 +16,18 @@ public class PlayerController : MonoBehaviour
     Vector2 rotate;
     Transform cameraTransform;
     float originSpeed;
-    //Move Property
-    public float speed = 5f;
-    public float rotateSpeed = 10f;
+    [SerializeField] Transform foot;
+    [SerializeField] LayerMask ground;
 
+    private Vector3 boxSize;
+    //Move Property
+    [SerializeField] float speed = 5f;
+    [SerializeField] float rotateSpeed = 10f;
+    [SerializeField] float jumpForce = 5;
+    bool isGround=true;
     // 카메라의 Transform
-    public float cameraPitch = 0f;    // 카메라의 현재 회전 각도 (위/아래)
-    public float maxCameraAngle = 80f; // 카메라의 최대 회전 각도
+    [SerializeField] float cameraPitch = 0f;    // 카메라의 현재 회전 각도 (위/아래)
+    [SerializeField] float maxCameraAngle = 80f; // 카메라의 최대 회전 각도
 
     //Ammo
     PlayerUI PlayerUI;
@@ -35,7 +40,8 @@ public class PlayerController : MonoBehaviour
     public GameObject ShootDelayBarUI;
     public Slider ShootDelayBar;
     public ParticleSystem shotParticle;
-    void Start()
+
+    private void Start()
     {
         PlayerUI = GetComponent<PlayerUI>();
         PlayerUI.Choose(curruntAmmo);
@@ -45,15 +51,24 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         ShootDelayBarUI.SetActive(false);
         originSpeed = speed;
+        boxSize = new Vector3(transform.localScale.x, 0.1f, transform.localScale.z);
+
     }
 
-    void Update()
+
+    private void IsGroundCheck(Collider other)
+    {
+        isGround=!isGround;
+    }
+
+
+    void LateUpdate()
     {
         CameraSet();
     }
     void FixedUpdate()
     {
-   
+
         Moving();
     }
 
@@ -99,9 +114,9 @@ public class PlayerController : MonoBehaviour
         rotate = value.Get<Vector2>();
     }
 
-    private void OnFire(InputValue value)
+    private void OnFire()
     {
-        if (!CanShoot) {return; }
+        if (!CanShoot) { return; }
         StartCoroutine(CheckCanShoot());
         shotParticle.Play();
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, fireRange))
@@ -112,6 +127,29 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    public void OnJump()
+    {
+        if (!isGround) return;
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        isGround = false;
+        StartCoroutine(JumpRoutine());
+    }
+   
+    private IEnumerator JumpRoutine()
+    {
+        while (!isGround)
+        {
+            yield return new WaitForSeconds(0.1f);
+            if (Physics.CheckBox(foot.position, boxSize / 2, Quaternion.identity, ground))
+            {
+                isGround = true;
+                Debug.Log("isGround = true");
+            }
+        }
+    }
+
+
 
     private void OnNumber()
     {
