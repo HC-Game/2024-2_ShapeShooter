@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HeavyEnemy : EnemyBase
 {
+    [SerializeField] Transform[] ShapeHeads;
+    [SerializeField] Transform[] HeadPos;
     int[] currentShapeIndex = new int[3];
 
     int[,] heavyEnemyShapes =
@@ -15,27 +17,46 @@ public class HeavyEnemy : EnemyBase
         { 3, 1, 2},
         { 3, 2, 1}
     };
-    public void Init()
+    public override void  init()
     {
-        currentShapeIndex = new int[heavyEnemyShapes.GetLength(1)];
+        base.init();
+        
+        InitializeEnemyShape();
+        UpdateShapeHeads();
+        InitializeEnemyData();
 
-        var randomRow = Random.Range(0, heavyEnemyShapes.GetLength(0));
-      
-        for (int i = 0; i < heavyEnemyShapes.GetLength(1); i++)
-        {
-            // 무작위로 행 선택 후, 해당 열 값을 저장
-            currentShapeIndex[i] = heavyEnemyShapes[randomRow, i];
-        }
-
-        // 결과 출력
-        Debug.Log("현재 선택된 모양: " + string.Join(", ", currentShapeIndex));
-
-        EnemyData.enemySpeed = 1f;
-        EnemyData.enemyHealth = 3;
-        EnemyData.CurrentEnemyShape = 4;
-        EnemyData.enemydamage = 1;
     }
 
+    private void InitializeEnemyShape()
+    {
+        currentShapeIndex = new int[heavyEnemyShapes.GetLength(1)];
+        var randomRow = Random.Range(0, heavyEnemyShapes.GetLength(0));
+    
+
+        for (int i = 0; i < heavyEnemyShapes.GetLength(1); i++)
+        {
+            currentShapeIndex[i] = heavyEnemyShapes[randomRow, i];
+         
+        }
+    }
+
+    private void UpdateShapeHeads()
+    {
+        int index = 0;
+        foreach (int shapeIndex in currentShapeIndex)
+        {
+            ShapeHeads[shapeIndex - 1].localPosition = HeadPos[index++].localPosition;
+          
+        }
+    }
+
+    private void InitializeEnemyData()
+    {
+        EnemyData.enemySpeed = 1f;
+        EnemyData.enemyHealth = 3;
+        EnemyData.CurrentEnemyShape = currentShapeIndex[0];
+        EnemyData.enemydamage = 1;
+    }
     public override void MoveToPlayer()
     {
         base.MoveToPlayer();
