@@ -30,10 +30,10 @@ public class HeavyEnemy : EnemyBase
         // 결과 출력
         Debug.Log("현재 선택된 모양: " + string.Join(", ", currentShapeIndex));
 
-        enemyData.enemySpeed = 1f;
-        enemyData.enemyHealth = 3;
-        enemyData.CurrentEnemyShape = 4;
-        enemyData.enemydamage = 1;
+        EnemyData.enemySpeed = 1f;
+        EnemyData.enemyHealth = 3;
+        EnemyData.CurrentEnemyShape = 4;
+        EnemyData.enemydamage = 1;
     }
 
     public override void MoveToPlayer()
@@ -44,13 +44,13 @@ public class HeavyEnemy : EnemyBase
     {
 
         Debug.Log("hit");
-        if (weapon == enemyData.CurrentEnemyShape)
+        if (weapon == EnemyData.CurrentEnemyShape)
         {
-            enemyData.enemyHealth -= 1;
-            Debug.Log(enemyData.enemyHealth);
+            EnemyData.enemyHealth -= 1;
+            Debug.Log(EnemyData.enemyHealth);
         }
 
-        if (enemyData.enemyHealth <= 0)
+        if (EnemyData.enemyHealth <= 0)
         {
             Death();
             Debug.Log(123);

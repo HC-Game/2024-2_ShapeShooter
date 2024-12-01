@@ -7,9 +7,9 @@ public class PentaEnemy : EnemyBase
     public override void init()
     {
         base.init();
-        enemyData.enemyHealth = 1;
-        enemyData.CurrentEnemyShape = 2;
-        enemyData.enemydamage = 1;
+        EnemyData.enemyHealth = 1;
+        EnemyData.CurrentEnemyShape = 2;
+        EnemyData.enemydamage = 1;
       
     }
     public override void MoveToPlayer()

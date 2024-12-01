@@ -905,37 +905,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &729905511
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 729905512}
-  m_Layer: 0
-  m_Name: Foot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &729905512
+--- !u!4 &729905512 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 962628753749235350, guid: 1c80da29208d0714793e1ce8bf941f55, type: 3}
+  m_PrefabInstance: {fileID: 5680307348086540219}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 729905511}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1157522971655905263}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &757062090
 GameObject:
   m_ObjectHideFlags: 0
@@ -2761,9 +2735,9 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 130, y: 130}
-  m_Spacing: {x: 79.2, y: 0}
+  m_Spacing: {x: 30.3, y: 0}
   m_Constraint: 1
-  m_ConstraintCount: 3
+  m_ConstraintCount: 5
 --- !u!1 &1740956771
 GameObject:
   m_ObjectHideFlags: 0
@@ -2947,7 +2921,6 @@ MonoBehaviour:
   - {fileID: 4534568160738896293, guid: 50477c35440800446a161709b247b444, type: 3}
   - {fileID: 4534568160738896293, guid: 31ab909bb1f6c654fbabd516eaa53561, type: 3}
   - {fileID: 4534568160738896293, guid: 79f88965bfb8bc340a99ada10856a2b1, type: 3}
-  - {fileID: 4561452776326244956, guid: 34044d49932c3e240937398485820b3c, type: 3}
   enemyParent: {fileID: 0}
 --- !u!4 &1830343101
 Transform:
@@ -3456,6 +3429,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5596172803144013394, guid: 1c80da29208d0714793e1ce8bf941f55, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5870833232276777794, guid: 1c80da29208d0714793e1ce8bf941f55, type: 3}
       propertyPath: foot
       value: 
@@ -3486,10 +3463,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 3146907832897968721, guid: 1c80da29208d0714793e1ce8bf941f55, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 729905512}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c80da29208d0714793e1ce8bf941f55, type: 3}
 --- !u!4 &8287595350615258489 stripped

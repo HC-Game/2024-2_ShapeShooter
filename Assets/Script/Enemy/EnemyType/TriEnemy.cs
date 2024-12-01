@@ -7,9 +7,9 @@ public class TriEnemy : EnemyBase
     public override void init()
     {
         base.init();
-        enemyData.enemyHealth = 1;
-        enemyData.CurrentEnemyShape = 0;
-        enemyData.enemydamage = 1;
+        EnemyData.enemyHealth = 1;
+        EnemyData.CurrentEnemyShape = 0;
+        EnemyData.enemydamage = 1;
         
     }
 

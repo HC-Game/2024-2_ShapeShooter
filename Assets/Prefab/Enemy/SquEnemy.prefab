@@ -65,6 +65,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 959f00551a715cf43bd72055727cd0fd, type: 3}
+--- !u!95 &872975662243608639 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 959f00551a715cf43bd72055727cd0fd, type: 3}
+  m_PrefabInstance: {fileID: 6735127833998771630}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6556469654765347397 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 959f00551a715cf43bd72055727cd0fd, type: 3}
@@ -177,6 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52861953de163614a845b69ba1f4ec5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyAnimator: {fileID: 872975662243608639}
   enemyData:
     enemyHealth: 0
     CurrentEnemyShape: 0

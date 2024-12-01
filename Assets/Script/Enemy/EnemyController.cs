@@ -6,18 +6,17 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public EnemyBase enemyBase;
-    public TextMeshPro a; 
-    private void Start()
+    [SerializeField] EnemyBase enemyBase;
+    [SerializeField] TextMeshPro a; 
+
+    private void OnEnable()
     {
         enemyBase.init();
     }
     private void FixedUpdate()
     {
-        a.text =  $"{enemyBase.enemyData.CurrentEnemyShape}";
+        a.text =  $"{enemyBase.EnemyData.CurrentEnemyShape}";
         
         enemyBase.MoveToPlayer();
     }
-  
-
 }
