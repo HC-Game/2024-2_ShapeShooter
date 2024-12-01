@@ -15,13 +15,20 @@ public class HeavyEnemy : EnemyBase
         { 3, 1, 2},
         { 3, 2, 1}
     };
-    public override void init()
+    public void Init()
     {
+        currentShapeIndex = new int[heavyEnemyShapes.GetLength(1)];
 
+        var randomRow = Random.Range(0, heavyEnemyShapes.GetLength(0));
+      
         for (int i = 0; i < heavyEnemyShapes.GetLength(1); i++)
         {
-            currentShapeIndex[i] = heavyEnemyShapes[Random.Range(0,heavyEnemyShapes.GetLength(0)-1), i];
+            // 무작위로 행 선택 후, 해당 열 값을 저장
+            currentShapeIndex[i] = heavyEnemyShapes[randomRow, i];
         }
+
+        // 결과 출력
+        Debug.Log("현재 선택된 모양: " + string.Join(", ", currentShapeIndex));
 
         enemyData.enemySpeed = 1f;
         enemyData.enemyHealth = 3;
@@ -33,8 +40,6 @@ public class HeavyEnemy : EnemyBase
     {
         base.MoveToPlayer();
     }
-
-
     public override void Hit(int weapon)
     {
 

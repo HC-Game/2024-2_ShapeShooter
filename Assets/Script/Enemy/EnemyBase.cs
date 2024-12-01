@@ -19,11 +19,9 @@ public abstract class EnemyBase : MonoBehaviour
     }
     public virtual void Hit(int weapon)
     {
-        Debug.Log("hit");
         if (weapon == enemyData.CurrentEnemyShape)
         {
             Death();
-            Debug.Log("death");
         }
 
     }
