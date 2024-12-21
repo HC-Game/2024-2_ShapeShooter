@@ -8,7 +8,7 @@ public class PentaEnemy : EnemyBase
     {
         base.init();
         EnemyData.enemyHealth = 1;
-        EnemyData.CurrentEnemyShape = 2;
+        EnemyData.currentEnemyShape = 2;
         EnemyData.enemydamage = 1;
       
     }

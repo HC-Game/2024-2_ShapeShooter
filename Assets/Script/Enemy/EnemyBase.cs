@@ -3,24 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public enum EnemyShapes { Triangle, Square, Pentagon, Heavy, Mini };
+public enum EnemyShapes { Null = - 1,Triangle, Cube, Pentagon, max };
 public abstract class EnemyBase : MonoBehaviour
 {
+    [SerializeField] Material HitMaterial;
+    
+    [SerializeField] ParticleSystem HitParticle;
     [SerializeField] Animator enemyAnimator;
     [SerializeField] EnemyData enemyData;
     public EnemyData EnemyData { get => enemyData; }
     [SerializeField] Rigidbody rb;
-
+    [SerializeField] GameObject[] EnemyHeads;
     bool isDead;
 
     public virtual void init() {
+       
+        EnemyData.enemyHealth = 1;
+        EnemyData.enemydamage = 1;
         EnemyData.enemySpeed = 2.4f;
         isDead = false;
+        EnemyData.currentEnemyShape = Random.Range(0,3);
+        SetHead();
         enemyAnimator.SetBool("IsDead", isDead);
         rb.isKinematic = false;
         GetComponent<Collider>().enabled = true;
       
     }
+
+    void SetHead(){
+        for(int i=0; i<EnemyHeads.Length;i++){
+            EnemyHeads[i].SetActive(false);
+        }
+        EnemyHeads[EnemyData.currentEnemyShape].SetActive(true);
+    }
+
     public virtual void MoveToPlayer()
     {
         if (isDead) return;
@@ -30,8 +46,10 @@ public abstract class EnemyBase : MonoBehaviour
     }
     public virtual void Hit(int weapon)
     {
-        if (weapon == EnemyData.CurrentEnemyShape)
+        if (weapon == EnemyData.currentEnemyShape)
         {
+             EnemyHeads[EnemyData.currentEnemyShape].SetActive(false);
+            HitParticle.Play();
             Death();
         }
 
@@ -50,7 +68,7 @@ public abstract class EnemyBase : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        // 게임 오브젝트 비활성화
+    
         gameObject.SetActive(false);
     }
     public bool GetDead()
@@ -59,7 +77,7 @@ public abstract class EnemyBase : MonoBehaviour
     }
     void OnDisable()
     {
-        ObjectPooler.ReturnToPool(gameObject);    // 한 객체에 한번만
+        ObjectPooler.ReturnToPool(gameObject);    
     }
 }
 

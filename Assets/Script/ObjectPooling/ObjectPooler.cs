@@ -95,7 +95,7 @@ public class ObjectPooler : MonoBehaviour
         if (!poolDictionary.ContainsKey(tag))
             throw new Exception($"Pool with tag {tag} doesn't exist.");
 
-        // Å¥¿¡ ¾øÀ¸¸é »õ·Î Ãß°¡
+ 
         Queue<GameObject> poolQueue = poolDictionary[tag];
         if (poolQueue.Count <= 0)
         {
@@ -104,7 +104,6 @@ public class ObjectPooler : MonoBehaviour
             ArrangePool(obj);
         }
 
-        // Å¥¿¡¼­ ²¨³»¼­ »ç¿ë
         GameObject objectToSpawn = poolQueue.Dequeue();
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
@@ -118,7 +117,7 @@ public class ObjectPooler : MonoBehaviour
         spawnObjects = new List<GameObject>();
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
-        // ¹Ì¸® »ý¼º
+        // ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
         foreach (Pool pool in pools)
         {
             poolDictionary.Add(pool.tag, new Queue<GameObject>());
@@ -129,7 +128,7 @@ public class ObjectPooler : MonoBehaviour
             }
 
             if (poolDictionary[pool.tag].Count != pool.size)
-                Debug.LogError($"{pool.tag}¿¡ ReturnToPoolÀÌ Áßº¹µË´Ï´Ù");
+                Debug.LogError($"{pool.tag}ï¿½ï¿½ ReturnToPoolï¿½ï¿½ ï¿½ßºï¿½ï¿½Ë´Ï´ï¿½");
         }
     }
 
@@ -137,13 +136,13 @@ public class ObjectPooler : MonoBehaviour
     {
         var obj = Instantiate(prefab, transform);
         obj.name = tag;
-        obj.SetActive(false); // ºñÈ°¼ºÈ­½Ã ReturnToPool Enqueue
+        obj.SetActive(false); // ï¿½ï¿½È°ï¿½ï¿½È­ï¿½ï¿½ ReturnToPool Enqueue
         return obj;
     }
 
     void ArrangePool(GameObject obj)
     {
-        // Ãß°¡µÈ ¿ÀºêÁ§Æ® ¹­¾î¼­ Á¤·Ä
+        // ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½î¼­ ï¿½ï¿½ï¿½ï¿½
         bool isFind = false;
         for (int i = 0; i < transform.childCount; i++)
         {

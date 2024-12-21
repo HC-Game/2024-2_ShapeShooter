@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5744225786693316506}
   m_Layer: 0
-  m_Name: Head (1)
+  m_Name: Head 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4138297104367232671}
   m_Layer: 0
-  m_Name: Head (2)
+  m_Name: Head 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,9 +91,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4858704141591394066}
   - {fileID: 4833834073354121760}
   - {fileID: 1251035830142925201}
-  - {fileID: 4858704141591394066}
   m_Father: {fileID: 4179374047003613749}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6542970143812555054
@@ -106,7 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7054501552249458669}
   m_Layer: 0
-  m_Name: Head (3)
+  m_Name: Head 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -483,18 +483,18 @@ MonoBehaviour:
   enemyAnimator: {fileID: 2325232086571088918}
   enemyData:
     enemyHealth: 0
-    CurrentEnemyShape: 0
+    currentEnemyShape: 0
     enemydamage: 0
     enemySpeed: 0
   rb: {fileID: 7118632027720549849}
   ShapeHeads:
+  - {fileID: 4858704141591394066}
   - {fileID: 4833834073354121760}
   - {fileID: 1251035830142925201}
-  - {fileID: 4858704141591394066}
   HeadPos:
-  - {fileID: 5744225786693316506}
-  - {fileID: 4138297104367232671}
   - {fileID: 7054501552249458669}
+  - {fileID: 4138297104367232671}
+  - {fileID: 5744225786693316506}
 --- !u!54 &7118632027720549849 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 1032485860799034891, guid: bbd86d014a257e54aa4ed9ecc1e8be75, type: 3}

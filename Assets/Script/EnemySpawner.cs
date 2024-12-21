@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
     {
         spawnPoints = GetComponentsInChildren<Transform>().ToList();
         StartCoroutine(Spawn());
-      
+        StartCoroutine(Spawn());
     }
     
     IEnumerator Spawn()
@@ -22,11 +22,9 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {
             int rand = UnityEngine.Random.Range(0, enemys.Length);
-            
             ObjectPooler.SpawnFromPool($"{rand}", spawnPoints[UnityEngine.Random.Range(1, spawnPoints.Count)].position);
             yield return new WaitForSeconds(2f);
         }
     }
-
-    
+   
 }

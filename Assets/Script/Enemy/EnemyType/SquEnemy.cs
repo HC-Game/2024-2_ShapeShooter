@@ -9,10 +9,6 @@ public class SquEnemy : EnemyBase
     public override void init()
     {
         base.init();
-        EnemyData.enemyHealth = 1;
-        EnemyData.CurrentEnemyShape = 1;
-        EnemyData.enemydamage = 1;
-        
     }
     public override void MoveToPlayer()
     {

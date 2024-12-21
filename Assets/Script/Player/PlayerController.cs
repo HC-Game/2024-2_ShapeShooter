@@ -46,15 +46,15 @@ public class PlayerController : MonoBehaviour
     bool isGround=true;
     
     [Header("-----Camera Property-----")]
-    [SerializeField] float cameraPitch = 0f;    // 카메라의 현재 회전 각도 (위/아래)
-    [SerializeField] float maxCameraAngle = 80f; // 카메라의 최대 회전 각도
+    [SerializeField] float cameraPitch = 0f;  
+    [SerializeField] float maxCameraAngle = 80f; 
 
     [Header("-----Ammo Property-----")]
     int curruntAmmo = 0;
 
 
     [Header("-----Shoot Property-----")]
-    [SerializeField] float fireRange = 10f; // 사거리
+    [SerializeField] float fireRange = 10f; // 占쏙옙타占�
     [SerializeField] GameObject ShootDelayBarUI;
     [SerializeField] Slider ShootDelayBar;
     [SerializeField] ParticleSystem shotParticle;
@@ -110,7 +110,6 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 inputMove = value.Get<Vector2>();
 
-        // 이동 벡터 계산 (Forward 방향과 Right 방향을 결합)
         move = new Vector3(inputMove.x, 0, inputMove.y);
     }
 
@@ -170,7 +169,6 @@ public class PlayerController : MonoBehaviour
     }
     private void OnNumber()
     {
-        // 입력된 숫자 키를 처리
         if (Keyboard.current.digit1Key.wasPressedThisFrame)
         {
             curruntAmmo = 0;
@@ -202,7 +200,7 @@ public class PlayerController : MonoBehaviour
 
         //if (move != Vector3.zero && Keyboard.current.shiftKey.wasPressedThisFrame)
         //{
-        //    // 이동 처리: 회전된 방향을 기준으로 이동 벡터를 계산
+        //
         //    Vector3 moveDirection = rb.rotation * move.normalized;
         //    rb.AddForce(moveDirection*3f,ForceMode.Impulse);
         //}
@@ -213,7 +211,7 @@ public class PlayerController : MonoBehaviour
     {
         if (move != Vector3.zero)
         {
-            // 이동 처리 (회전된 방향을 기준으로 이동 벡터를 계산)
+
             Vector3 moveDirection = rb.rotation * move.normalized;
             rb.MovePosition(rb.position + moveDirection * speed * Time.fixedDeltaTime);
         }
@@ -221,14 +219,12 @@ public class PlayerController : MonoBehaviour
 
     private void CameraSet()
     {
-        // 회전 처리 (캐릭터 좌우 회전)
         if (rotate.x != 0)
         {
             Quaternion deltaRotation = Quaternion.Euler(0, rotate.x * rotateSpeed * Time.deltaTime, 0);
             rb.MoveRotation(rb.rotation * deltaRotation);
         }
 
-        // 카메라 회전 처리 (위/아래 회전)
         if (rotate.y != 0)
         {
             cameraPitch -= rotate.y * rotateSpeed * Time.deltaTime; 

@@ -15,7 +15,7 @@ public class PlayerUI : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // ¾À ÀüÈ¯ ½Ã GameManager¸¦ À¯Áö
+            DontDestroyOnLoad(gameObject); // ï¿½ï¿½ ï¿½ï¿½È¯ ï¿½ï¿½ GameManagerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
         else
         {
@@ -24,7 +24,7 @@ public class PlayerUI : MonoBehaviour
     }
     public void Choose(int index)
     {
-        Debug.Log(index);
+  
         for (int i = 0; i < AmmosUI.Length; i++)
         {
           
