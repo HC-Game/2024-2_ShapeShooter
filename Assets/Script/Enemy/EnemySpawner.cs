@@ -14,16 +14,17 @@ public class EnemySpawner : MonoBehaviour
     {
         spawnPoints = GetComponentsInChildren<Transform>().ToList();
         StartCoroutine(Spawn());
-        StartCoroutine(Spawn());
+      
     }
     
     IEnumerator Spawn()
     {
+        yield return null;
         while (true)
         {
             int rand = UnityEngine.Random.Range(0, enemys.Length);
             ObjectPooler.SpawnFromPool($"{rand}", spawnPoints[UnityEngine.Random.Range(1, spawnPoints.Count)].position);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(GameManager.Instance.SpawnTime);
         }
     }
    

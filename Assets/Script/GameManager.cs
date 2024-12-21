@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-
             return instance;
         }
     }
@@ -20,11 +19,16 @@ public class GameManager : MonoBehaviour
     public Transform player;
     public Transform playerCam;
     public TextMeshProUGUI TimeText;
-    [SerializeField] private int timeLimit = 600;
-    [SerializeField] private int timeInterval;
-    [SerializeField] private float spawnTime = 2;
-    [SerializeField] private float DecreaseTime;
-    [SerializeField] private int minute, second;
+    private int timeLimit = 600;
+    private int timeInterval;
+   
+    private float spawnTime = 2;
+     public float SpawnTime
+    {
+        get{ return spawnTime; } 
+    }
+    private float DecreaseTime;
+    private int minute, second;
     WaitForSeconds wait_1f = new WaitForSeconds(1f);
 
     public int killCount;
@@ -33,7 +37,7 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // �� ��ȯ �� GameManager�� ����
+            DontDestroyOnLoad(gameObject); 
         }
         else
         {
@@ -45,9 +49,11 @@ public class GameManager : MonoBehaviour
         GameStart();
         timeInterval = timeLimit / 10;
         DecreaseTime = spawnTime / 20;
+        StartCoroutine(ReduceTime());
     }
     IEnumerator StartGameTimer()
     {
+        yield return null;
         while (timeLimit > 0)
         {
             minute = timeLimit / 60;
@@ -56,7 +62,7 @@ public class GameManager : MonoBehaviour
             TimeText.text = $"{minute} : {second}";
 
             yield return wait_1f;
-            timeLimit -= 1; // 1�� ����
+            timeLimit -= 1; 
             continue;
         }
         GameWin();
@@ -73,8 +79,10 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator ReduceTime()
     {
+        yield return null;
         while (true)
         {
+         
             spawnTime -= DecreaseTime;
             Debug.Log(spawnTime);
             yield return new WaitForSeconds(timeInterval);

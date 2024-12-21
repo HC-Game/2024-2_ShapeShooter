@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-
-public class EnemyController : MonoBehaviour
+public class EnemyController : EnemyBase
 {
-    [SerializeField] EnemyBase enemyBase;
     private void OnEnable()
     {
-        enemyBase.init();
+        base.init();
     }
-  
     private void FixedUpdate()
     {
-
-        enemyBase.MoveToPlayer();
+    
+        base.MoveToPlayer();
     }
 }

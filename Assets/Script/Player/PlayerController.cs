@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DamagedRoutine()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         isDamaged = false;
     }
     #endregion
@@ -171,18 +171,18 @@ public class PlayerController : MonoBehaviour
     {
         if (Keyboard.current.digit1Key.wasPressedThisFrame)
         {
-            curruntAmmo = 0;
+            curruntAmmo = (int)EnemyShapes.Triangle;
             PlayerUI.instance.Choose(curruntAmmo);
        
         }
         else if (Keyboard.current.digit2Key.wasPressedThisFrame)
         {
-            curruntAmmo = 1;
+            curruntAmmo = (int)EnemyShapes.Cube;
             PlayerUI.instance.Choose(curruntAmmo);
         }
         else if (Keyboard.current.digit3Key.wasPressedThisFrame)
         {
-            curruntAmmo = 2;
+            curruntAmmo = (int)EnemyShapes.Pentagon;
             PlayerUI.instance.Choose(curruntAmmo);
         }
     }

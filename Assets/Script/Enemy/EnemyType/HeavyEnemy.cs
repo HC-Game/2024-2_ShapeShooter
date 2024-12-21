@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class HeavyEnemy : EnemyBase
 {
-    [SerializeField] Transform[] ShapeHeads;
     [SerializeField] Transform[] HeadPos;
     int[] ShapesIndex = new int[3];
     int currentShapeIndex = 0;
@@ -18,41 +17,49 @@ public class HeavyEnemy : EnemyBase
     { 2, 0, 1 },
     { 2, 1, 0 }
     };
-
-    public override void init()
-    {
-        base.init();
-
+     void OnEnable()
+    {    
+        isDead = false;
+        enemyAnimator.SetBool("IsDead", isDead);
+        rb.isKinematic = false;
+        GetComponent<Collider>().enabled = true;
         InitializeEnemyShape();
-        SetShapeHeads();
-        InitializeEnemyData();
-
+        SetEnemyHeads();
     }
    
+    private void Start() {
+       InitializeEnemyData();
+    }
+    private void FixedUpdate() {
+        MoveToPlayer();
+    }
+
     private void InitializeEnemyShape()
     {
         var randomRow = Random.Range(0, heavyEnemyShapes.GetLength(0));
 
         for (int i = 0; i < heavyEnemyShapes.GetLength(1); i++)
         {
-            ShapesIndex[i] = (heavyEnemyShapes[randomRow, i]);
+            ShapesIndex[i] = heavyEnemyShapes[randomRow, i];
+              Debug.Log( "09 "+ShapesIndex[i]);
         }
     }
 
-    private void SetShapeHeads()
+    private void SetEnemyHeads()
     {
         for (int i = 0; i < ShapesIndex.Length; i++)
         {
-            ShapeHeads[ShapesIndex[i]].localPosition = HeadPos[i].localPosition;
+            EnemyHeads[ShapesIndex[i]].transform.localPosition = HeadPos[i].localPosition;
         }
     }
 
     private void InitializeEnemyData()
     {
-        EnemyData.enemySpeed = 1f;
+        EnemyData.enemySpeed = 1.5f;
         EnemyData.enemyHealth = 3;
         EnemyData.enemydamage = 1;
     }
+
     public override void MoveToPlayer()
     {
         base.MoveToPlayer();
@@ -64,11 +71,14 @@ public class HeavyEnemy : EnemyBase
             currentShapeIndex++;
             EnemyData.enemyHealth--;
 
-            if (EnemyData.enemyHealth <= 0)
+            if (EnemyData.enemyHealth <= 0){
                 Death();
+                HitParticle.Play();
+            }
+                
 
             UpdateShapeHead();
-            Debug.Log(EnemyData.enemyHealth);
+
             Debug.Log($"현재 모양{currentShapeIndex}");
         }
         else
@@ -81,12 +91,12 @@ public class HeavyEnemy : EnemyBase
 
     private void UpdateShapeHead()
     {
-        for (int i = 0; i < ShapeHeads.Length; i++)
+        for (int i = 0; i < EnemyHeads.Length; i++)
         {
             if (i < currentShapeIndex)
-                ShapeHeads[i].gameObject.SetActive(false);
+                EnemyHeads[ShapesIndex[i]].gameObject.SetActive(false);
             else
-                ShapeHeads[i].gameObject.SetActive(true);
+                EnemyHeads[ShapesIndex[i]].gameObject.SetActive(true);
             
         }
     }

@@ -3,35 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public enum EnemyShapes { Null = - 1,Triangle, Cube, Pentagon, max };
+public enum EnemyShapes { Null = -1, Triangle, Cube, Pentagon, max };
 public abstract class EnemyBase : MonoBehaviour
 {
     [SerializeField] Material HitMaterial;
-    
-    [SerializeField] ParticleSystem HitParticle;
-    [SerializeField] Animator enemyAnimator;
-    [SerializeField] EnemyData enemyData;
-    public EnemyData EnemyData { get => enemyData; }
-    [SerializeField] Rigidbody rb;
-    [SerializeField] GameObject[] EnemyHeads;
-    bool isDead;
 
-    public virtual void init() {
-       
+    [SerializeField] protected ParticleSystem HitParticle;
+    [SerializeField] protected Animator enemyAnimator;
+    [SerializeField] protected EnemyData enemyData;
+    protected EnemyData EnemyData { get => enemyData; }
+    [SerializeField] protected Rigidbody rb;
+    [SerializeField] protected GameObject[] EnemyHeads;
+    protected bool isDead;
+
+    public virtual void init()
+    {
+
         EnemyData.enemyHealth = 1;
         EnemyData.enemydamage = 1;
         EnemyData.enemySpeed = 2.4f;
+        EnemyData.currentEnemyShape = Random.Range(0, 3);
         isDead = false;
-        EnemyData.currentEnemyShape = Random.Range(0,3);
-        SetHead();
         enemyAnimator.SetBool("IsDead", isDead);
+
         rb.isKinematic = false;
         GetComponent<Collider>().enabled = true;
-      
+        SetHead();
     }
 
-    void SetHead(){
-        for(int i=0; i<EnemyHeads.Length;i++){
+    void SetHead()
+    {
+        for (int i = 0; i < EnemyHeads.Length; i++)
+        {
             EnemyHeads[i].SetActive(false);
         }
         EnemyHeads[EnemyData.currentEnemyShape].SetActive(true);
@@ -48,14 +51,14 @@ public abstract class EnemyBase : MonoBehaviour
     {
         if (weapon == EnemyData.currentEnemyShape)
         {
-             EnemyHeads[EnemyData.currentEnemyShape].SetActive(false);
+            EnemyHeads[EnemyData.currentEnemyShape].SetActive(false);
             HitParticle.Play();
             Death();
         }
-
     }
     public void Death()
     {
+        AudioManager.Instance.PlaySFX("kill");
         StartCoroutine(DeadRoutine());
     }
     IEnumerator DeadRoutine()
@@ -68,7 +71,7 @@ public abstract class EnemyBase : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-    
+
         gameObject.SetActive(false);
     }
     public bool GetDead()
@@ -77,7 +80,7 @@ public abstract class EnemyBase : MonoBehaviour
     }
     void OnDisable()
     {
-        ObjectPooler.ReturnToPool(gameObject);    
+        ObjectPooler.ReturnToPool(gameObject);
     }
 }
 

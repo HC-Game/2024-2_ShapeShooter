@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 6934776450986212418}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.861, z: 0.007}
+  m_LocalPosition: {x: 0, y: 1.793, z: 0.007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -167,6 +167,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6360714304834715708, guid: bbd86d014a257e54aa4ed9ecc1e8be75, type: 3}
+    - {fileID: 1256865263210450692, guid: bbd86d014a257e54aa4ed9ecc1e8be75, type: 3}
+    - {fileID: 1475953700470944873, guid: bbd86d014a257e54aa4ed9ecc1e8be75, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8378122374738813463, guid: bbd86d014a257e54aa4ed9ecc1e8be75, type: 3}
       insertIndex: -1
@@ -303,6 +305,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8617428168399059695}
     m_Modifications:
+    - target: {fileID: 893742823890934277, guid: ce90117a3eca4434a9403079e9def4a9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 12.43156
+      objectReference: {fileID: 0}
+    - target: {fileID: 893742823890934277, guid: ce90117a3eca4434a9403079e9def4a9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.00085822
+      objectReference: {fileID: 0}
     - target: {fileID: 3560694506165450037, guid: ce90117a3eca4434a9403079e9def4a9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -343,9 +353,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4719117208290311941, guid: ce90117a3eca4434a9403079e9def4a9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 13.852456
+      objectReference: {fileID: 0}
+    - target: {fileID: 4719117208290311941, guid: ce90117a3eca4434a9403079e9def4a9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.00085822
+      objectReference: {fileID: 0}
     - target: {fileID: 7387098740916839400, guid: ce90117a3eca4434a9403079e9def4a9, type: 3}
       propertyPath: m_Name
       value: HeadVisual
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197991237243533186, guid: ce90117a3eca4434a9403079e9def4a9, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 14.515419
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197991237243533186, guid: ce90117a3eca4434a9403079e9def4a9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.00085822
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
