@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,10 +20,11 @@ public class GameManager : MonoBehaviour
     public Transform player;
     public Transform playerCam;
     public TextMeshProUGUI TimeText;
-    private int timeLimit = 600;
-    private int timeInterval;
+    public TextMeshProUGUI KillCountText;
+    [SerializeField] private int timeLimit = 600;
+    [SerializeField] private int timeInterval;
    
-    private float spawnTime = 2;
+    [SerializeField] private float spawnTime = 2;
      public float SpawnTime
     {
         get{ return spawnTime; } 
@@ -30,7 +32,10 @@ public class GameManager : MonoBehaviour
     private float DecreaseTime;
     private int minute, second;
     WaitForSeconds wait_1f = new WaitForSeconds(1f);
-
+    [SerializeField] EnemySpawner spanwer;
+    [SerializeField] GameObject gameClearUI;
+    
+    [SerializeField] GameObject gameOverUI;
     public int killCount;
     void Awake()
     {
@@ -46,10 +51,10 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+
         GameStart();
-        timeInterval = timeLimit / 10;
-        DecreaseTime = spawnTime / 20;
-        StartCoroutine(ReduceTime());
+      
+       
     }
     IEnumerator StartGameTimer()
     {
@@ -65,17 +70,7 @@ public class GameManager : MonoBehaviour
             timeLimit -= 1; 
             continue;
         }
-        GameWin();
-    }
-
-    private void GameWin()
-    {
-        throw new NotImplementedException();
-    }
-
-    private void GameOver()
-    {
-
+        GameClear();
     }
     IEnumerator ReduceTime()
     {
@@ -88,15 +83,48 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(timeInterval);
         }
     }
-
-
     public void GameStart()
     {
-
+        gameClearUI.SetActive(false);
+        gameOverUI.SetActive(false);
+        timeInterval = timeLimit / 10;
+        DecreaseTime = spawnTime / 20;
         StartCoroutine(StartGameTimer());
+        StartCoroutine(ReduceTime());
+        AudioManager.Instance.StopBGM("MenuBGM");
+        AudioManager.Instance.PlayBGM("InGameBGM");
     }
     public void KillUp()
     {
         killCount++;
+        KillCountText.text = $"Kill : {killCount}";
+    }
+      public void GameClear()
+    {
+          spanwer.Stop();
+          StopAllCoroutines();
+          Cursor.lockState= CursorLockMode.Confined;
+          gameClearUI.gameObject.SetActive(true);
+    }
+
+    public void GameOver()
+    {
+        spanwer.Stop();
+        StopAllCoroutines();
+        Cursor.lockState= CursorLockMode.Confined;
+        gameOverUI.gameObject.SetActive(true);
+    }
+       public void GamePlay()
+    {
+        spanwer.Play();
+        
+    }
+
+     public void GoToMain()
+    {
+        SceneManager.LoadScene(0);
+         gameOverUI.gameObject.SetActive(false);
+        gameClearUI.gameObject.SetActive(false);
+      
     }
 }

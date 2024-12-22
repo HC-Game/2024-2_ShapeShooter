@@ -11,7 +11,6 @@ public class EnemyController : EnemyBase
     }
     private void FixedUpdate()
     {
-    
         base.MoveToPlayer();
     }
 }

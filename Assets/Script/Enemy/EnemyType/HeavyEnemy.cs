@@ -18,13 +18,14 @@ public class HeavyEnemy : EnemyBase
     { 2, 1, 0 }
     };
      void OnEnable()
-    {    
+    {   
         isDead = false;
         enemyAnimator.SetBool("IsDead", isDead);
         rb.isKinematic = false;
         GetComponent<Collider>().enabled = true;
         InitializeEnemyShape();
         SetEnemyHeads();
+        base.ScaleSet();
     }
    
     private void Start() {
@@ -55,6 +56,7 @@ public class HeavyEnemy : EnemyBase
 
     private void InitializeEnemyData()
     {
+          currentShapeIndex = 0;
         EnemyData.enemySpeed = 1.5f;
         EnemyData.enemyHealth = 3;
         EnemyData.enemydamage = 1;
@@ -70,19 +72,19 @@ public class HeavyEnemy : EnemyBase
         {
             currentShapeIndex++;
             EnemyData.enemyHealth--;
+              UpdateShapeHead();
 
             if (EnemyData.enemyHealth <= 0){
                 Death();
                 HitParticle.Play();
+                return;
             }
-                
-
-            UpdateShapeHead();
-
-            Debug.Log($"현재 모양{currentShapeIndex}");
+            AudioManager.Instance.PlaySFX("hit");
+            enemyAnimator.SetTrigger("Hit");
         }
         else
         {
+             AudioManager.Instance.PlaySFX("falseHit");
             EnemyData.enemyHealth= 3;
             currentShapeIndex = 0;
             UpdateShapeHead();

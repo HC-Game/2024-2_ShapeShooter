@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-
-
 public class ObjectPooler : MonoBehaviour
 {
     static ObjectPooler inst;
@@ -17,19 +15,14 @@ public class ObjectPooler : MonoBehaviour
         public GameObject prefab;
         public int size;
     }
-
     [SerializeField] Pool[] pools;
     List<GameObject> spawnObjects;
     Dictionary<string, Queue<GameObject>> poolDictionary;
 
-
-
     public static GameObject SpawnFromPool(string tag, Vector3 position) =>
         inst._SpawnFromPool(tag, position, Quaternion.identity);
-
     public static GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation) =>
         inst._SpawnFromPool(tag, position, rotation);
-
     public static T SpawnFromPool<T>(string tag, Vector3 position) where T : Component
     {
         GameObject obj = inst._SpawnFromPool(tag, position, Quaternion.identity);
@@ -41,7 +34,6 @@ public class ObjectPooler : MonoBehaviour
             throw new Exception($"Component not found");
         }
     }
-
     public static T SpawnFromPool<T>(string tag, Vector3 position, Quaternion rotation) where T : Component
     {
         GameObject obj = inst._SpawnFromPool(tag, position, rotation);
@@ -53,7 +45,6 @@ public class ObjectPooler : MonoBehaviour
             throw new Exception($"Component not found");
         }
     }
-
     public static List<GameObject> GetAllPools(string tag)
     {
         if (!inst.poolDictionary.ContainsKey(tag))
@@ -61,7 +52,6 @@ public class ObjectPooler : MonoBehaviour
 
         return inst.spawnObjects.FindAll(x => x.name == tag);
     }
-
     public static List<T> GetAllPools<T>(string tag) where T : Component
     {
         List<GameObject> objects = GetAllPools(tag);
@@ -71,7 +61,6 @@ public class ObjectPooler : MonoBehaviour
 
         return objects.ConvertAll(x => x.GetComponent<T>());
     }
-
     public static void ReturnToPool(GameObject obj)
     {
         if (!inst.poolDictionary.ContainsKey(obj.name))
@@ -80,16 +69,7 @@ public class ObjectPooler : MonoBehaviour
         inst.poolDictionary[obj.name].Enqueue(obj);
     }
 
-    [ContextMenu("GetSpawnObjectsInfo")]
-    void GetSpawnObjectsInfo()
-    {
-        foreach (var pool in pools)
-        {
-            int count = spawnObjects.FindAll(x => x.name == pool.tag).Count;
-            Debug.Log($"{pool.tag} count : {count}");
-        }
-    }
-
+    
     GameObject _SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
         if (!poolDictionary.ContainsKey(tag))
@@ -111,7 +91,6 @@ public class ObjectPooler : MonoBehaviour
 
         return objectToSpawn;
     }
-
     void Start()
     {
         spawnObjects = new List<GameObject>();
@@ -131,7 +110,6 @@ public class ObjectPooler : MonoBehaviour
                 Debug.LogError($"{pool.tag}�� ReturnToPool�� �ߺ��˴ϴ�");
         }
     }
-
     GameObject CreateNewObject(string tag, GameObject prefab)
     {
         var obj = Instantiate(prefab, transform);
@@ -139,8 +117,8 @@ public class ObjectPooler : MonoBehaviour
         obj.SetActive(false); // ��Ȱ��ȭ�� ReturnToPool Enqueue
         return obj;
     }
-
     void ArrangePool(GameObject obj)
+    
     {
         // �߰��� ������Ʈ ��� ����
         bool isFind = false;
@@ -160,6 +138,16 @@ public class ObjectPooler : MonoBehaviour
                 spawnObjects.Insert(i, obj);
                 break;
             }
+        }
+    }
+
+[ContextMenu("GetSpawnObjectsInfo")]
+    void GetSpawnObjectsInfo()
+    {
+        foreach (var pool in pools)
+        {
+            int count = spawnObjects.FindAll(x => x.name == pool.tag).Count;
+            Debug.Log($"{pool.tag} count : {count}");
         }
     }
 }

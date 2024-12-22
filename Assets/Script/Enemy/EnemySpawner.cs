@@ -8,15 +8,15 @@ public class EnemySpawner : MonoBehaviour
 {
     List<Transform> spawnPoints = new List<Transform>();
     public GameObject[] enemys;
-    public Transform enemyParent;
-    
-    void Start()
-    {
-        spawnPoints = GetComponentsInChildren<Transform>().ToList();
-        StartCoroutine(Spawn());
-      
+    Coroutine spawnRoutine;
+    void Start(){
+    spawnPoints = GetComponentsInChildren<Transform>().ToList();
+    spawnRoutine = StartCoroutine(Spawn());
     }
-    
+    public void Play()
+    {
+       spawnRoutine = StartCoroutine(Spawn());
+    }
     IEnumerator Spawn()
     {
         yield return null;
@@ -26,6 +26,9 @@ public class EnemySpawner : MonoBehaviour
             ObjectPooler.SpawnFromPool($"{rand}", spawnPoints[UnityEngine.Random.Range(1, spawnPoints.Count)].position);
             yield return new WaitForSeconds(GameManager.Instance.SpawnTime);
         }
+    }
+    public void Stop(){
+        StopCoroutine(spawnRoutine);
     }
    
 }

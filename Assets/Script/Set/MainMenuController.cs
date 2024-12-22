@@ -9,7 +9,13 @@ public class MainMenuController : MonoBehaviour
     public void StartButton_Clik()
     {
         SceneManager.LoadScene(1);
-       
+
+        if (GameManager.Instance!=null)
+        GameManager.Instance.GamePlay();
+    }
+    private void Start() {
+        AudioManager.Instance.StopBGM("InGameBGM");
+        AudioManager.Instance.PlayBGM("MenuBGM");
     }
 
 

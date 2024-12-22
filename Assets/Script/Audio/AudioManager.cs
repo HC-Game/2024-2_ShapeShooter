@@ -7,7 +7,7 @@ using UnityEngine.VFX;
 public class AudioManager : MonoBehaviour
 {
     private static AudioManager instance;
-    [SerializeField] AudioSource EnemyKillSound;
+    [SerializeField] AudioSource[] audioSources;
     Dictionary<string, AudioSource> AudioDictionary = new Dictionary<string, AudioSource>();
 
 
@@ -31,8 +31,12 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        AudioDictionary.Add("kill",EnemyKillSound);
-       
+        AudioDictionary.Add("kill",audioSources[0]);
+        AudioDictionary.Add("hit",audioSources[1]);
+        AudioDictionary.Add("falseHit",audioSources[2]);
+        AudioDictionary.Add("MenuBGM",audioSources[3]);
+        AudioDictionary.Add("InGameBGM",audioSources[4]);
+
     }
 
     public void PlaySFX(string sfx)

@@ -237,7 +237,7 @@ public class PlayerController : MonoBehaviour
     #region Game Logic
     void Death()
     {
-        Debug.Log("death");
+        GameManager.Instance.GameOver();
     }
     #endregion
 }

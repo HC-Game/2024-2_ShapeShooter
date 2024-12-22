@@ -14,8 +14,12 @@ public abstract class EnemyBase : MonoBehaviour
     protected EnemyData EnemyData { get => enemyData; }
     [SerializeField] protected Rigidbody rb;
     [SerializeField] protected GameObject[] EnemyHeads;
+    Vector3 originScale;
     protected bool isDead;
 
+    void Awake() {
+        originScale = transform.localScale;
+    }
     public virtual void init()
     {
 
@@ -29,8 +33,12 @@ public abstract class EnemyBase : MonoBehaviour
         rb.isKinematic = false;
         GetComponent<Collider>().enabled = true;
         SetHead();
+        ScaleSet();
     }
-
+    public void ScaleSet(){
+        var scaleFactor =  Random.Range(0.5f,2.0f);
+        transform.localScale = originScale * scaleFactor;
+    }
     void SetHead()
     {
         for (int i = 0; i < EnemyHeads.Length; i++)
