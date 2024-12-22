@@ -40,6 +40,8 @@ public class AudioManager : MonoBehaviour
         AudioDictionary.Add("InGameBGM",audioSources[4]);
         AudioDictionary.Add("GameOver",audioSources[5]);
         AudioDictionary.Add("Clear",audioSources[6]);
+        AudioDictionary.Add("Heal",audioSources[7]);
+        AudioDictionary.Add("Hurt",audioSources[8]);
     }
 
     public void PlaySFX(string sfx)

@@ -25,12 +25,14 @@ public class PlayerController : MonoBehaviour
         {
             _health = value;
 
+            if (_health > 4)
+             _health=5;
             if (_health < 1)
             {
                 _health = 0;
                 Death();
             }
-            PlayerUI.instance.HPMinus1(_health);
+            PlayerUI.instance.HPSet(_health);
         }
     }
 
@@ -95,7 +97,9 @@ public class PlayerController : MonoBehaviour
         {
             Health--;
             isDamaged = true;
+            AudioManager.Instance.PlaySFX("Hurt");
             StartCoroutine(DamagedRoutine());
+            
         }
     }
 

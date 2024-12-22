@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     }
 
     [Header("GamePlay Properties")]
-    public Transform player;
+    public PlayerController player;
     public Transform playerCam;
     public TextMeshProUGUI TimeText;
     public TextMeshProUGUI KillCountText;
@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] GameObject gameOverUI;
     public int killCount;
+    public int ItemCount;
+    public GameObject Item;
     void Awake()
     {
         if (instance == null)
@@ -75,7 +77,6 @@ public class GameManager : MonoBehaviour
         yield return null;
         while (true)
         {
-         
             spawnTime -= DecreaseTime;
             Debug.Log(spawnTime);
             yield return new WaitForSeconds(timeInterval);
@@ -97,8 +98,22 @@ public class GameManager : MonoBehaviour
     {
         killCount++;
         KillCountText.text = $"Kill : {killCount}";
+
     }
-      public void GameClear()
+
+    public bool CheckItem(){
+        if (GameManager.Instance.killCount%ItemCount == 0)
+        return true;
+        else
+        return false;
+    }
+
+    public void ItemSpawn(Transform enemyPos)
+    {
+        ObjectPooler.SpawnFromPool("HealthItem",enemyPos.position);
+    }
+
+    public void GameClear()
     {
           AudioManager.Instance.PlaySFX("Clear");
           spanwer.Stop();
