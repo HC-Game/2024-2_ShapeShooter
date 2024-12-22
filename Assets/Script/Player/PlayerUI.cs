@@ -38,14 +38,15 @@ public class PlayerUI : MonoBehaviour
         }
     }
     #region HP
-    public void HPMinus1(int index)
+    public void HPSet(int index)
     {
-        HealthUI[index].SetActive(false);
+        for(int i = 0; i<HealthUI.Length;i++)
+            if(i<index)
+            HealthUI[i].SetActive(true);
+            else if(i>=index)
+            HealthUI[i].SetActive(false);
     }
-    public void HPPlus1(int index)
-    {
-        HealthUI[index].SetActive(true);
-    }
+
     public int GetMaxHealth() {
         return HealthUI.Length;
     }

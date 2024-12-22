@@ -51,7 +51,7 @@ public abstract class EnemyBase : MonoBehaviour
     public virtual void MoveToPlayer()
     {
         if (isDead) return;
-        Vector3 dir = GameManager.Instance.player.position - rb.position;
+        Vector3 dir = GameManager.Instance.player.transform.position - rb.position;
         rb.MovePosition(rb.position + dir.normalized * EnemyData.enemySpeed * Time.fixedDeltaTime);
         rb.rotation = Quaternion.Euler(0, Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg, 0);
     }
@@ -69,6 +69,9 @@ public abstract class EnemyBase : MonoBehaviour
         AudioManager.Instance.PlaySFX("kill");
         StartCoroutine(DeadRoutine());
         GameManager.Instance.KillUp();
+       if(GameManager.Instance.CheckItem()){
+           GameManager.Instance.ItemSpawn(transform);
+       }
     }
     IEnumerator DeadRoutine()
     {
