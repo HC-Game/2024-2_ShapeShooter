@@ -58,9 +58,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject ShootDelayBarUI;
     [SerializeField] Slider ShootDelayBar;
     [SerializeField] ParticleSystem shotParticle;
-
+    [SerializeField] LayerMask Head;
     bool CanShoot = true;
-    WaitForSeconds ShootDelay = new WaitForSeconds(0.05f);
+    WaitForSeconds ShootDelay = new WaitForSeconds(0.1f);
 
     #region Unity Logic
     private void Start()
@@ -123,28 +123,31 @@ public class PlayerController : MonoBehaviour
         if (!CanShoot) { return; }
         StartCoroutine(CheckCanShoot());
         shotParticle.Play();
-        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, fireRange))
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, fireRange, Head))
         {
-            if (hit.transform.CompareTag("Enemy"))
-            {
-                hit.transform.GetComponent<EnemyBase>().Hit(curruntAmmo);
-            }
+        
+            hit.transform.GetComponentInParent<EnemyBase>().Hit(curruntAmmo);
+
         }
     }
-    IEnumerator CheckCanShoot()
+    // IEnumerator CheckCanShoot()
+    // {
+    //     ShootDelayBarUI.SetActive(true);
+    //     ShootDelayBar.value = 0;
+    //     CanShoot = false;
+    //     for (float i = 1; i <= 20; i++)
+    //     {
+    //         ShootDelayBar.value = i / 20;
+    //         yield return ShootDelay;
+    //     }
+    //     ShootDelayBarUI.SetActive(false);
+    //     CanShoot = true;
+    // }
+        IEnumerator CheckCanShoot()
     {
-        ShootDelayBarUI.SetActive(true);
-        ShootDelayBar.value = 0;
         CanShoot = false;
-
-        for (float i = 1; i <= 16; i++)
-        {
-            ShootDelayBar.value = i / 16;
-            yield return ShootDelay;
-        }
-        ShootDelayBarUI.SetActive(false);
+        yield return ShootDelay;
         CanShoot = true;
-
     }
 
     public void OnJump()

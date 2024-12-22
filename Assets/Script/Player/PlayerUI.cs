@@ -15,7 +15,7 @@ public class PlayerUI : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // �� ��ȯ �� GameManager�� ����
+        
         }
         else
         {

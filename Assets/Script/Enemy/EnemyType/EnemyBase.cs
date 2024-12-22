@@ -22,11 +22,10 @@ public abstract class EnemyBase : MonoBehaviour
     }
     public virtual void init()
     {
-
         EnemyData.enemyHealth = 1;
         EnemyData.enemydamage = 1;
         EnemyData.enemySpeed = 2.4f;
-        EnemyData.currentEnemyShape = Random.Range(0, 3);
+        
         isDead = false;
         enemyAnimator.SetBool("IsDead", isDead);
 
@@ -36,11 +35,12 @@ public abstract class EnemyBase : MonoBehaviour
         ScaleSet();
     }
     public void ScaleSet(){
-        var scaleFactor =  Random.Range(0.5f,2.0f);
+        var scaleFactor =  Random.Range(0.3f,2);
         transform.localScale = originScale * scaleFactor;
     }
     void SetHead()
     {
+        EnemyData.currentEnemyShape = Random.Range(0, 3);
         for (int i = 0; i < EnemyHeads.Length; i++)
         {
             EnemyHeads[i].SetActive(false);
@@ -68,6 +68,7 @@ public abstract class EnemyBase : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("kill");
         StartCoroutine(DeadRoutine());
+        GameManager.Instance.KillUp();
     }
     IEnumerator DeadRoutine()
     {

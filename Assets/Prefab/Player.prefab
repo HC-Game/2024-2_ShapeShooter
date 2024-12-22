@@ -145,6 +145,9 @@ MonoBehaviour:
   ShootDelayBarUI: {fileID: 0}
   ShootDelayBar: {fileID: 0}
   shotParticle: {fileID: 8468947528461030510}
+  Head:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &8508351855267060342
 MonoBehaviour:
   m_ObjectHideFlags: 0

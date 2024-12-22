@@ -68,8 +68,6 @@ public class ObjectPooler : MonoBehaviour
 
         inst.poolDictionary[obj.name].Enqueue(obj);
     }
-
-    
     GameObject _SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
     {
         if (!poolDictionary.ContainsKey(tag))
@@ -96,7 +94,7 @@ public class ObjectPooler : MonoBehaviour
         spawnObjects = new List<GameObject>();
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
-        // �̸� ����
+
         foreach (Pool pool in pools)
         {
             poolDictionary.Add(pool.tag, new Queue<GameObject>());
@@ -114,13 +112,13 @@ public class ObjectPooler : MonoBehaviour
     {
         var obj = Instantiate(prefab, transform);
         obj.name = tag;
-        obj.SetActive(false); // ��Ȱ��ȭ�� ReturnToPool Enqueue
+        obj.SetActive(false); 
         return obj;
     }
     void ArrangePool(GameObject obj)
     
     {
-        // �߰��� ������Ʈ ��� ����
+        
         bool isFind = false;
         for (int i = 0; i < transform.childCount; i++)
         {

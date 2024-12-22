@@ -51,10 +51,8 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-
         GameStart();
-      
-       
+
     }
     IEnumerator StartGameTimer()
     {
@@ -93,6 +91,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(ReduceTime());
         AudioManager.Instance.StopBGM("MenuBGM");
         AudioManager.Instance.PlayBGM("InGameBGM");
+         Time.timeScale=1;
     }
     public void KillUp()
     {
@@ -101,23 +100,27 @@ public class GameManager : MonoBehaviour
     }
       public void GameClear()
     {
+          AudioManager.Instance.PlaySFX("Clear");
           spanwer.Stop();
           StopAllCoroutines();
           Cursor.lockState= CursorLockMode.Confined;
           gameClearUI.gameObject.SetActive(true);
+           Time.timeScale=0;
     }
 
     public void GameOver()
     {
+        AudioManager.Instance.PlaySFX("GameOver");
         spanwer.Stop();
         StopAllCoroutines();
         Cursor.lockState= CursorLockMode.Confined;
         gameOverUI.gameObject.SetActive(true);
+        Time.timeScale=0;
+
     }
        public void GamePlay()
     {
         spanwer.Play();
-        
     }
 
      public void GoToMain()

@@ -18,13 +18,17 @@ public class HeavyEnemy : EnemyBase
     { 2, 1, 0 }
     };
      void OnEnable()
-    {   
+    {             
+        EnemyData.enemyHealth = 3;
+        currentShapeIndex = 0;
         isDead = false;
         enemyAnimator.SetBool("IsDead", isDead);
         rb.isKinematic = false;
         GetComponent<Collider>().enabled = true;
         InitializeEnemyShape();
         SetEnemyHeads();
+        UpdateShapeHead();
+        
         base.ScaleSet();
     }
    
@@ -56,9 +60,9 @@ public class HeavyEnemy : EnemyBase
 
     private void InitializeEnemyData()
     {
-          currentShapeIndex = 0;
+
         EnemyData.enemySpeed = 1.5f;
-        EnemyData.enemyHealth = 3;
+
         EnemyData.enemydamage = 1;
     }
 
@@ -72,11 +76,10 @@ public class HeavyEnemy : EnemyBase
         {
             currentShapeIndex++;
             EnemyData.enemyHealth--;
-              UpdateShapeHead();
-
+            UpdateShapeHead();
+            HitParticle.Play();
             if (EnemyData.enemyHealth <= 0){
                 Death();
-                HitParticle.Play();
                 return;
             }
             AudioManager.Instance.PlaySFX("hit");

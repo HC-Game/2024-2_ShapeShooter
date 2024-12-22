@@ -9,7 +9,6 @@ public class EnemyData
     public int enemydamage;
     public float enemySpeed;
 
-    public EnemyShapes EnemyType;
 }
 
 

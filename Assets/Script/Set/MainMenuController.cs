@@ -12,6 +12,8 @@ public class MainMenuController : MonoBehaviour
 
         if (GameManager.Instance!=null)
         GameManager.Instance.GamePlay();
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
     private void Start() {
         AudioManager.Instance.StopBGM("InGameBGM");
