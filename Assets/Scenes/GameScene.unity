@@ -1215,10 +1215,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pools:
   - tag: 0
-    prefab: {fileID: 8641580270043986412, guid: 87a3d46428dc757498f73036fd76de99, type: 3}
+    prefab: {fileID: 2586583743615932187, guid: fbc26cb070251064380bca18b60be850, type: 3}
     size: 0
   - tag: 1
-    prefab: {fileID: 4561452776326244956, guid: 34044d49932c3e240937398485820b3c, type: 3}
+    prefab: {fileID: 8137577740212424751, guid: 2ebd819a9a82b5d42a8172c143fdf103, type: 3}
     size: 0
   - tag: HealthItem
     prefab: {fileID: 9048265113612864727, guid: f0294c652e06d5c488e7f6aa2e1fdb51, type: 3}
@@ -2551,7 +2551,7 @@ MonoBehaviour:
   playerCam: {fileID: 8287595350615258489}
   TimeText: {fileID: 1653980874}
   KillCountText: {fileID: 649723933}
-  timeLimit: 300
+  timeLimit: 120
   timeInterval: 0
   spawnTime: 2
   spanwer: {fileID: 1830343100}
@@ -4248,8 +4248,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemys:
-  - {fileID: 8641580270043986412, guid: 87a3d46428dc757498f73036fd76de99, type: 3}
-  - {fileID: 4561452776326244956, guid: 34044d49932c3e240937398485820b3c, type: 3}
+  - {fileID: 2586583743615932187, guid: fbc26cb070251064380bca18b60be850, type: 3}
+  - {fileID: 8137577740212424751, guid: 2ebd819a9a82b5d42a8172c143fdf103, type: 3}
 --- !u!4 &1830343101
 Transform:
   m_ObjectHideFlags: 0

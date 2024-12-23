@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 2
-  lifeTime: 56
+  lifeTime: 5
 --- !u!135 &5692103428315782010
 SphereCollider:
   m_ObjectHideFlags: 0

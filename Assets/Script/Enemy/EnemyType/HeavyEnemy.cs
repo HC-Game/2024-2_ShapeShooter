@@ -19,7 +19,7 @@ public class HeavyEnemy : EnemyBase
     };
      void OnEnable()
     {             
-        EnemyData.enemyHealth = 3;
+        enemyData.enemyHealth = 3;
         currentShapeIndex = 0;
         isDead = false;
         enemyAnimator.SetBool("IsDead", isDead);
@@ -61,9 +61,9 @@ public class HeavyEnemy : EnemyBase
     private void InitializeEnemyData()
     {
 
-        EnemyData.enemySpeed = 1.5f;
+        enemyData.enemySpeed = 1.5f;
 
-        EnemyData.enemydamage = 1;
+        enemyData.enemydamage = 1;
     }
 
     public override void MoveToPlayer()
@@ -75,10 +75,10 @@ public class HeavyEnemy : EnemyBase
         if (weapon == ShapesIndex[currentShapeIndex])
         {
             currentShapeIndex++;
-            EnemyData.enemyHealth--;
+            enemyData.enemyHealth--;
             UpdateShapeHead();
             HitParticle.Play();
-            if (EnemyData.enemyHealth <= 0){
+            if (enemyData.enemyHealth <= 0){
                 Death();
                 return;
             }
@@ -88,7 +88,7 @@ public class HeavyEnemy : EnemyBase
         else
         {
              AudioManager.Instance.PlaySFX("falseHit");
-            EnemyData.enemyHealth= 3;
+            enemyData.enemyHealth= 3;
             currentShapeIndex = 0;
             UpdateShapeHead();
         }

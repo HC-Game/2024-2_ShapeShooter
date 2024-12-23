@@ -129,9 +129,7 @@ public class PlayerController : MonoBehaviour
         shotParticle.Play();
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, fireRange, Head))
         {
-        
             hit.transform.GetComponentInParent<EnemyBase>().Hit(curruntAmmo);
-
         }
     }
     // IEnumerator CheckCanShoot()
